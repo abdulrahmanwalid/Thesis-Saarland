@@ -1,0 +1,17 @@
+# KSHV SOX (3POV) + DNA + 2 Mg2+, unphosphorylated
+source leaprc.protein.ff14SB
+source leaprc.DNA.OL15
+source leaprc.water.tip3p          # also loads JC monovalent + Li/Merz divalent ion params
+
+sys = loadpdb sox_baseline_prepared.pdb
+
+check sys
+charge sys
+
+solvatebox sys TIP3PBOX 10.0
+# SPLIT ions: fill counts after solvating (see README.md)
+addionsrand sys Na+ NA_COUNT Cl- CL_COUNT
+
+saveamberparm sys sox_baseline.prmtop sox_baseline.inpcrd
+savepdb sys sox_baseline_solv.pdb
+quit

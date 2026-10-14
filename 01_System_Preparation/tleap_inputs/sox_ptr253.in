@@ -1,0 +1,17 @@
+# KSHV SOX (3POV) + DNA + 2 Mg2+, phosphotyrosine at residue 253 (topology numbering)
+source leaprc.protein.ff14SB
+source leaprc.phosaa14SB           # PTR parameters
+source leaprc.DNA.OL15
+source leaprc.water.tip3p
+
+sys = loadpdb sox_ptr253_prepared.pdb     # Tyr253 renamed to PTR in the PDB
+
+check sys
+charge sys
+
+solvatebox sys TIP3PBOX 10.0
+addionsrand sys Na+ NA_COUNT Cl- CL_COUNT
+
+saveamberparm sys sox_ptr253.prmtop sox_ptr253.inpcrd
+savepdb sys sox_ptr253_solv.pdb
+quit

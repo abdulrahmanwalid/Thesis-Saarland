@@ -1,0 +1,20 @@
+# KSHV SOX (3POV) + DNA + 2 Mg2+ + AD51 docked at the catalytic Mg2+ site
+source leaprc.protein.ff14SB
+source leaprc.DNA.OL15
+source leaprc.gaff2
+source leaprc.water.tip3p
+
+LIG = loadmol2 AD51.mol2           # GAFF2 / AM1-BCC, residue name LIG
+loadamberparams AD51.frcmod        # from parmchk2
+
+sys = loadpdb sox_ad51_mgsite_complex.pdb # protein + DNA + Mg + LIG docked pose
+
+check sys
+charge sys
+
+solvatebox sys TIP3PBOX 10.0
+addionsrand sys Na+ NA_COUNT Cl- CL_COUNT
+
+saveamberparm sys complex.prmtop complex.inpcrd
+savepdb sys complex_solv.pdb
+quit

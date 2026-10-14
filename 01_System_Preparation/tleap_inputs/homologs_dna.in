@@ -1,0 +1,18 @@
+# Herpesvirus alkaline nuclease homology models (MODELLER, 3POV template) + DNA + 2 Mg2+
+# Same input for all three homologs: replace "homolog" in the file names with
+#   ul12  (HSV-1),  ul98  (HCMV),  bglf5  (EBV)
+source leaprc.protein.ff14SB
+source leaprc.DNA.OL15
+source leaprc.water.tip3p
+
+sys = loadpdb homolog_dna_prepared.pdb
+
+check sys
+charge sys
+
+solvatebox sys TIP3PBOX 10.0
+addionsrand sys Na+ NA_COUNT Cl- CL_COUNT     # SPLIT counts differ per homolog
+
+saveamberparm sys homolog_dna.prmtop homolog_dna.inpcrd
+savepdb sys homolog_dna_solv.pdb
+quit
