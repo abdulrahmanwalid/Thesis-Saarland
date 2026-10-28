@@ -26,10 +26,10 @@ The work combines:
 | `03_docking/` | Docking protocol and selected poses |
 | `04_md_simulations/` | Minimization and production MD notebooks, HPC job scripts |
 | `05_analysis/` | Trajectory analysis notebooks (RMSD/RMSF, DCCM, contacts, MM-GBSA) |
-| `06_visualization/` | VMD and PyMOL scripts |
+| `06_visualization/` | PyMOL scripts |
 
 Trajectories and topologies are not included due to size.
 
 ## Tools
 
-AmberTools (tleap, antechamber), OpenMM, MDAnalysis, MODELLER, MOE, PyMOL, VMD
+AmberTools (tleap, antechamber), OpenMM, MDAnalysis, MODELLER, MOE, PyMOL
