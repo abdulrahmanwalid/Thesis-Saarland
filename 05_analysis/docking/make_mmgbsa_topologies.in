@@ -1,0 +1,39 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# cpptraj input — MM-GBSA topologies from the solvated complex topology.
+#
+#   complex_stripped.prmtop   protein + Mg2+ + LIG   (solute only)
+#   receptor.prmtop           protein + Mg2+
+#   ligand.prmtop             LIG only
+#
+# Mg2+ is kept with the RECEPTOR, so the reported dG is the binding free
+# energy of AD-51 to the metal-bound enzyme, not to the apo protein.
+#
+# Atom order matters: the analysis script slices the stripped complex as
+# receptor-then-ligand, which holds because LIG follows the protein and the
+# metal in the original topology. Check with:
+#     cpptraj -p complex_stripped.prmtop <<< resinfo
+# and confirm atoms(complex_stripped) == atoms(receptor) + atoms(ligand).
+#
+# Run once per system, from that system's folder:
+#     cpptraj -i make_mmgbsa_topologies.in
+# ═══════════════════════════════════════════════════════════════════════════
+
+# --- complex: strip solvent and counterions only --------------------------
+parm complex.prmtop
+parmstrip :WAT,Na+,Cl-
+parmwrite out complex_stripped.prmtop
+clear parm
+
+# --- receptor: also strip the ligand --------------------------------------
+parm complex.prmtop
+parmstrip :WAT,Na+,Cl-,LIG
+parmwrite out receptor.prmtop
+clear parm
+
+# --- ligand: keep LIG alone -----------------------------------------------
+parm complex.prmtop
+parmstrip :WAT,Na+,Cl-,MG
+parmstrip :!LIG
+parmwrite out ligand.prmtop
+
+quit
