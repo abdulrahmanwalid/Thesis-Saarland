@@ -5,8 +5,7 @@
 #   receptor.prmtop           protein + Mg2+
 #   ligand.prmtop             LIG only
 #
-# Mg2+ is kept with the RECEPTOR, so the reported dG is the binding free
-# energy of AD-51 to the metal-bound enzyme, not to the apo protein.
+# Mg2+ is kept with the RECEPTOR.
 #
 # Atom order matters: the analysis script slices the stripped complex as
 # receptor-then-ligand, which holds because LIG follows the protein and the
