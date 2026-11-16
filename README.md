@@ -32,4 +32,4 @@ Trajectories and topologies are not included due to size.
 
 ## Tools
 
-AmberTools (tleap, antechamber), OpenMM, MDAnalysis, MODELLER, MOE, PyMOL
+AmberTools (tleap, antechamber), OpenMM, MDAnalysis, MODELLER, MOE, PyMOL, ChimeraX
